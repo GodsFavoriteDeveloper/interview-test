@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{movie?.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle> {{movie?.genre}} </ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{movie?.plot}}
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>
+
+<ion-footer *ngIf="movie">
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <ion-button [routerLink]="['/movies', 'edit', movie?.id]" color="success" expand="block">Edit</ion-button>
+      </ion-col>
+      <ion-col class="ion-no-padding">
+        <ion-button color="danger" (click)="deleteMovie(movie?.id)" expand="block">Delete</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

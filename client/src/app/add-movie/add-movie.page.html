@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Movie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (submit)="submitMovie(movieForm)" #movieForm="ngForm">
+
+    <ion-item>
+      <ion-label position="floating">Enter Title</ion-label>
+      <ion-input name="title" ngModel type="text" #titleInput="ngModel" required title>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Enter Plot</ion-label>
+      <ion-textarea name="plot" ngModel type="text" #plotInput="ngModel" required plot>
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Genre</ion-label>
+      <ion-select name="genre" ngModel type="text" #genreInput="ngModel" required genre okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="comedy">Comedy</ion-select-option>
+        <ion-select-option value="action">Action</ion-select-option>
+        <ion-select-option value="drama">Drama</ion-select-option>
+        <ion-select-option value="animation">Animation</ion-select-option>
+        <ion-select-option value="romance">Romance</ion-select-option>
+        <ion-select-option value="cartoon">Cartoon</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button type="submit" color="primary" expand="block">Submit Movie</ion-button>
+  </form>
+</ion-content>

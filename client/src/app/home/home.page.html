@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Movies List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button routerLink="/add-movie" expand="block" color="dark">Add Movie</ion-button>
+  <ion-list *ngIf="!movies">
+    <ion-item *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
+      <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </p>
+
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-list *ngIf="movies && movies.length > 0">
+    <ion-item *ngFor="let movie of movies" [routerLink]="['/movies', movie.id]">
+      <ion-icon name="film" slot="start"></ion-icon>
+      <ion-label>
+        <h3 class="title">{{movie.title}}</h3>
+        <p class="genre">{{movie.genre}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>
