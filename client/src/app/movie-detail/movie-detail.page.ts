@@ -1,5 +1,6 @@
+import { ToastController } from '@ionic/angular';
 import { Movie } from './../models/movie.model';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from './../services/movies.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,8 +14,8 @@ export class MovieDetailPage implements OnInit {
 
   constructor(
     private moviesService: MoviesService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastCtrl: ToastController
   ) { }
 
   ngOnInit() {
@@ -34,7 +35,21 @@ export class MovieDetailPage implements OnInit {
   deleteMovie(movieId) {
     this.moviesService.deleteMovie(movieId)
     .subscribe(() => {
-      console.log('Movie Successfully Deleted');
+      this.showToast('Successfully deleted!!');
+    }, error => {
+      this.showToast('Failed to delete!!');
+    });
+  }
+
+  showToast(message: string) {
+    this.toastCtrl.create({
+      color: 'dark',
+      position: 'top',
+      message,
+      duration: 2000,
+      keyboardClose: true
+    }).then(toastEl => {
+      toastEl.present();
     });
   }
 

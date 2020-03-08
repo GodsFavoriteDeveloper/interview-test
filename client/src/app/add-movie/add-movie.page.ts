@@ -11,7 +11,10 @@ import { ToastController } from '@ionic/angular';
 })
 export class AddMoviePage implements OnInit {
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(
+    private moviesService: MoviesService,
+    private toastCtrl: ToastController
+    ) { }
 
   ngOnInit() {
   }
@@ -22,9 +25,21 @@ export class AddMoviePage implements OnInit {
     }
     this.moviesService.addMovie(form.value.title, form.value.plot, form.value.genre)
     .subscribe(res => {
-      console.log(res);
+      this.showToast('Movie Submitted!!');
     }, error => {
-      console.log(error);
+      this.showToast('Failed To Submit!!');
+    });
+  }
+
+  showToast(message: string) {
+    this.toastCtrl.create({
+      color: 'dark',
+      position: 'top',
+      message,
+      duration: 2000,
+      keyboardClose: true
+    }).then(toastEl => {
+      toastEl.present();
     });
   }
 

@@ -1,5 +1,6 @@
+import { ToastController } from '@ionic/angular';
 import { Movie } from './../models/movie.model';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { MoviesService } from './../services/movies.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,20 +16,20 @@ export class EditMoviePage implements OnInit {
 
   constructor(
     private moviesService: MoviesService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastCtrl: ToastController,
+    private router: Router
     ) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      console.log(paramMap);
       this.movieId = +paramMap.get('movieId');
       this.moviesService.getMovie(this.movieId)
       .subscribe(movie => {
         this.movie = movie;
-        console.log(movie);
       }, error => {
-        console.log(error);
+        this.showToast('Error Loading Data');
+        this.router.navigateByUrl('/');
       });
     });
   }
@@ -36,9 +37,21 @@ export class EditMoviePage implements OnInit {
   updateMovie(form: NgForm) {
     this.moviesService.updateMovie(this.movieId, form.value.title, form.value.plot, form.value.genre)
     .subscribe(res => {
-      console.log(res);
+      this.showToast('Successfully updated movie!!');
     }, error => {
-      console.log(error);
+      this.showToast('Failed To Delete!!');
+    });
+  }
+
+  showToast(message: string) {
+    this.toastCtrl.create({
+      color: 'dark',
+      position: 'top',
+      message,
+      duration: 2000,
+      keyboardClose: true
+    }).then(toastEl => {
+      toastEl.present();
     });
   }
 
