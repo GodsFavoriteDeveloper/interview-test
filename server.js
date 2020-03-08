@@ -7,9 +7,10 @@ const { Client } = require('pg');
 
 
 app.use(cors())
-app.use(express.static('www'));
+app.use(express.static('client/www'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+console.log(__dirname);
 
 const config = {
   host: 'localhost',
