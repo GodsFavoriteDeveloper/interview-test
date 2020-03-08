@@ -10,23 +10,23 @@ app.use(cors())
 app.use(express.static('client/www'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-console.log(__dirname);
 
-const config = {
-  host: 'localhost',
-  port: 5432,
-  database: 'moviesdb',
-  user: 'Norman',
-  password: 'saber24teeth',
-}
 
-  // const config = {
-  //   host: 'ec2-50-17-178-87.compute-1.amazonaws.com',
-  //   port: 5432,
-  //   database: 'd2lbkjieefmepa',
-  //   user: 'uccawmukpoexhw',
-  //   password: 'f2125ca1f2d8bd2876e129edf0e480cad0d252c54dabaf782a790c7167c16d08',
-  // };
+// const config = {
+//   host: 'localhost',
+//   port: 5432,
+//   database: 'moviesdb',
+//   user: 'Norman',
+//   password: 'saber24teeth',
+// }
+
+  const config = {
+    host: 'ec2-50-17-178-87.compute-1.amazonaws.com',
+    port: 5432,
+    database: 'd2lbkjieefmepa',
+    user: 'uccawmukpoexhw',
+    password: 'f2125ca1f2d8bd2876e129edf0e480cad0d252c54dabaf782a790c7167c16d08',
+  };
 
 
 
