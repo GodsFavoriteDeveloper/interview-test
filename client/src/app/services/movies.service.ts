@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators';
 export class MoviesService {
   private movies: Movie[] = [];
   private updatedMovies = new Subject<Movie[]>();
-  url = 'http://localhost:3000/api/movies';
+  url = 'https://interview-movies.herokuapp.com/api/movies';
 
   constructor(private http: HttpClient, private router: Router) { }
 
