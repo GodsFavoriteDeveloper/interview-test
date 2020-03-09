@@ -9,6 +9,6 @@ From the root of the project run *npm install*. This will install all required d
 Once all that is setup run *npm start* . If running on a local server, update **node** to **nodemon** in package.json. Make sure you have Nodemon installed on your local machine
 
 ### Client Setup
-cd into the client folder. Run *ionic serve* to run the app on the browser.
+cd into the client folder. First run *npm install* to install dependencies. Run *ionic serve* to run the app on the browser.
 To view the app from the server url, run *ng build --prod* from the client folder. This will rebuild and update the www folder.
 
