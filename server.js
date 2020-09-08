@@ -113,7 +113,7 @@ app.delete('/api/movies/:movieId', (req, res, next) => {
 })
 
 app.get('/api/email', (req, res, next) => {
-  return 'Working';
+  res.status(200).json({message: 'Successfully Deleted Movie'});
 })
 
 app.listen(port, () => {
