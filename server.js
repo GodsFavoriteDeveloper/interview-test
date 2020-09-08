@@ -114,34 +114,136 @@ app.delete('/api/movies/:movieId', (req, res, next) => {
   })
 })
 
-app.get('/api/email', (req, res, next) => {
-  let testAccount = await nodemailer.createTestAccount();
 
-  // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass, // generated ethereal password
-    },
-  });
-
-  // send mail with defined transport object
-  let info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: "ndubewebdesigner@gmail.com, baz@example.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>", // html body
-  });
-
-  console.log("Message sent: %s", info.messageId);
+app.get('/api/acknowledgement', (req, res, next) => {
+  nodemailer.createTestAccount().then(function (response) {
+    console.log(response);
+    nodemailer.createTransport({
+      service: "gmail", // true for 465, false for other ports
+      auth: {
+        secure: 'false',
+        user: 'sadftest1@gmail.com', // generated ethereal user
+        pass: 'Ma2mbuj@23', // generated ethereal password
+      },
+    }).sendMail({
+      from: '<sadftest1@gmail.com>', // sender address
+      to: "mathumbuj@gmail.com", // list of receivers
+      subject: "Acknoledgement Of Receipt", // Subject line
+      //text: ".   Regards", // plain text body
+      html: "<p>Dear Applicant</p><p>Please note that we have received your request an it has been sent for assessment. Feedback will be sent soonest.</p><p>Regards</p>", // html body
+    }).then(function (res) {
+      console.log(res);
+      console.log("Message sent: %s", res.messageId);
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
   // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(res));
+    })
+  })
+
+  
+
+  
+  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  res.status(200).json({message: 'Successfully Deleted Movie'});
+})
+
+app.get('/api/rejected', (req, res, next) => {
+  nodemailer.createTestAccount().then(function (response) {
+    console.log(response);
+    nodemailer.createTransport({
+      service: "gmail", // true for 465, false for other ports
+      auth: {
+        secure: 'false',
+        user: 'sadftest1@gmail.com', // generated ethereal user
+        pass: 'Ma2mbuj@23', // generated ethereal password
+      },
+    }).sendMail({
+      from: '<sadftest1@gmail.com>', // sender address
+      to: "mathumbuj@gmail.com", // list of receivers
+      subject: "Application Rejection", // Subject line
+      //text: ".   Regards", // plain text body
+      html: "<p>Dear Applicant</p><p>Your application was not considered because it has missing information, please provide the missing information and resubmit</p><p>Regards</p>", // html body
+    }).then(function (res) {
+      console.log(res);
+      console.log("Message sent: %s", res.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(res));
+    })
+  })
+
+  
+
+  
+  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  res.status(200).json({message: 'Successfully Deleted Movie'});
+})
+
+app.get('/api/assessment', (req, res, next) => {
+  nodemailer.createTestAccount().then(function (response) {
+    console.log(response);
+    nodemailer.createTransport({
+      service: "gmail", // true for 465, false for other ports
+      auth: {
+        secure: 'false',
+        user: 'sadftest1@gmail.com', // generated ethereal user
+        pass: 'Ma2mbuj@23', // generated ethereal password
+      },
+    }).sendMail({
+      from: '<sadftest1@gmail.com>', // sender address
+      to: "mathumbuJ@gmail.com", // list of receivers
+      subject: "Application Assessment", // Subject line
+      //text: ".   Regards", // plain text body
+      html: "<p>To whome it may concern</p><p>Your application was not considered because it has missing information, please provide the missing information and resubmit.</p><p>Regards</p>", // html body
+    }).then(function (res) {
+      console.log(res);
+      console.log("Message sent: %s", res.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(res));
+    })
+  })
+
+  
+
+  
+  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  res.status(200).json({message: 'Successfully Deleted Movie'});
+})
+
+
+app.get('/api/approval', (req, res, next) => {
+  nodemailer.createTestAccount().then(function (response) {
+    console.log(response);
+    nodemailer.createTransport({
+      service: "gmail", // true for 465, false for other ports
+      auth: {
+        secure: 'false',
+        user: 'sadftest1@gmail.com', // generated ethereal user
+        pass: 'Ma2mbuj@23', // generated ethereal password
+      },
+    }).sendMail({
+      from: '<sadftest1@gmail.com>', // sender address
+      to: "mathumbuJ@gmail.com", // list of receivers
+      subject: "Application Approval", // Subject line
+      //text: ".   Regards", // plain text body
+      html: "<p>Dear Applicant</p><p>Please note that your application has been approved.</p><p>Regards</p>", // html body
+    }).then(function (res) {
+      console.log(res);
+      console.log("Message sent: %s", res.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(res));
+    })
+  })
+
+  
+
+  
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
   res.status(200).json({message: 'Successfully Deleted Movie'});
 })
