@@ -140,9 +140,6 @@ app.get('/api/acknowledgement', (req, res, next) => {
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(res));
     })
   })
-
-  
-
   
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
   res.status(200).json({message: 'Successfully Deleted Movie'});
@@ -196,7 +193,7 @@ app.get('/api/assessment', (req, res, next) => {
       to: "mathumbuJ@gmail.com", // list of receivers
       subject: "Application Assessment", // Subject line
       //text: ".   Regards", // plain text body
-      html: "<p>To whome it may concern</p><p>Your application was not considered because it has missing information, please provide the missing information and resubmit.</p><p>Regards</p>", // html body
+      html: "<p>Please assist in approving the request.</p><p>Regards</p>", // html body
     }).then(function (res) {
       console.log(res);
       console.log("Message sent: %s", res.messageId);
