@@ -112,6 +112,10 @@ app.delete('/api/movies/:movieId', (req, res, next) => {
   })
 })
 
+app.get('/api/email', (req, res, next) => {
+  return 'Working';
+})
+
 app.listen(port, () => {
     console.log('Listening on port ' + port);
 })
